@@ -1,2 +1,4 @@
 libgl1
 poppler-utils
+
+libglib2.0-0
