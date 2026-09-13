@@ -1,0 +1,43 @@
+# --- Secrets (never commit these) ---
+.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+
+# --- Virtual environment ---
+venv/
+env/
+.venv/
+
+# --- Project data (user uploads + vector DB) ---
+data/uploads/*
+!data/uploads/.gitkeep
+data/chroma/*
+!data/chroma/.gitkeep
+
+# --- Logs ---
+*.log
+
+# --- OS junk ---
+.DS_Store
+Thumbs.db
+
+# --- Editor/IDE ---
+.vscode/
+.idea/
+*.swp
+
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+
+
+data/extracted/*
+!data/extracted/.gitkeep
