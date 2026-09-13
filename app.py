@@ -3,6 +3,16 @@ import re
 from pathlib import Path
 
 import streamlit as st
+
+# --------------------------------------------------
+# Bridge Streamlit Cloud secrets into environment variables so
+# pydantic-settings (config.py) picks them up correctly.
+# This MUST run before any `from services...` import, since those
+# modules (e.g. services/llm.py) read settings at import time.
+# --------------------------------------------------
+for key, value in st.secrets.items():
+    os.environ[key] = str(value)
+
 from langchain_core.documents import Document
 
 from services.loaders.pdf_loader import extract_documents_from_pdf
@@ -204,3 +214,8 @@ if uploaded_files:
     combined_text = "\n".join(st.session_state.extracted_texts.values())
     s1, s2, s3 = st.columns(3)
     s1.metric("Documents", len(all_filenames))
+    s2.metric("Total Words", len(combined_text.split()))
+    s3.metric("Total Characters", len(combined_text))
+
+st.markdown("---")
+st.caption("🚀 PolyRAG | Built with Streamlit • LangChain • EasyOCR • OpenCV • Gemini • ChromaDB")
